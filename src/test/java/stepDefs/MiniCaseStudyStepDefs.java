@@ -18,7 +18,7 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-public class MiniCaseStudyStepDefs {
+public class MiniCaseStudyStepDefs  {
 static WebDriver driver;
 	
 	@Given("User is on Launch Page")
@@ -81,7 +81,7 @@ static WebDriver driver;
 		String Befpath = "//h3[@class='panel-title']"; 
 		  driver.findElement(By.xpath(Befpath)).getText();
 		driver.findElement(By.xpath("//td//a[contains(text(),'Delete')]")).click();
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));  
+		//driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));  
 		  String Aftpath = "//h3[@class='panel-title']"; 
 		  driver.findElement(By.xpath(Aftpath)).getText();
 		  if(Befpath!=Aftpath) {
@@ -92,12 +92,13 @@ static WebDriver driver;
 	
 	@When("Items should be available in Cart")
 	public void items_should_be_available_in_cart() {
+		driver.navigate().to("https://www.demoblaze.com/cart.html");
 	    WebDriverWait waits = new WebDriverWait(driver, Duration.ofSeconds(30));
 	    waits.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//td[1]")));
 	}
 	@Then("Purchase Items")
 	public void purchase_items() {
-	//	driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
 		driver.findElement(By.xpath("//button[@class='btn btn-success']")).click();
 		  driver.findElement(By.xpath("//input[@id='name']")).sendKeys("Uvaneswar");
 		  driver.findElement(By.xpath("//input[@id='country']")).sendKeys("India");
@@ -105,6 +106,7 @@ static WebDriver driver;
 		  driver.findElement(By.xpath("//input[@id='card']")).sendKeys("12345678");
 		  driver.findElement(By.xpath("//input[@id='month']")).sendKeys("March");
 		  driver.findElement(By.xpath("//input[@id='year']")).sendKeys("2023");
+		  driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
 		  driver.findElement(By.xpath("//button[contains(text(),'Purchase')]")).click();
 		  boolean isDisp2  = driver.findElement(By.xpath("//h2[contains(text(),'Thank you for your purchase!')]")).isDisplayed();
 		  Assert.assertTrue(isDisp2);
