@@ -69,12 +69,16 @@ static WebDriver driver;
 		driver.findElement(By.xpath("//a[@id='cartur']")).click();
 	    WebDriverWait waits = new WebDriverWait(driver, Duration.ofSeconds(30));
 	    waits.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//td[2]")));
+	    boolean isDisp  = driver.findElement(By.xpath("//td[2]")).isDisplayed();
+		Assert.assertTrue(isDisp);
 	}
 	
 	@When("List of Items should be available in cart")
 	public void list_of_items_should_be_available_in_cart() {
 	    WebDriverWait waits = new WebDriverWait(driver, Duration.ofSeconds(30));
 	    waits.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//td[2]")));
+	    boolean isDisp  = driver.findElement(By.xpath("//td[2]")).isDisplayed();
+		Assert.assertTrue(isDisp);
 	}
 	@Then("Delete an item from Cart")
 	public void delete_an_item_from_cart() {
@@ -95,6 +99,8 @@ static WebDriver driver;
 		driver.navigate().to("https://www.demoblaze.com/cart.html");
 	    WebDriverWait waits = new WebDriverWait(driver, Duration.ofSeconds(30));
 	    waits.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//td[1]")));
+	    boolean isDisp  = driver.findElement(By.xpath("//td[1]")).isDisplayed();
+		Assert.assertTrue(isDisp);
 	}
 	@Then("Purchase Items")
 	public void purchase_items() {
